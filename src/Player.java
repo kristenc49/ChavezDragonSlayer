@@ -31,6 +31,10 @@ public class Player {
     public int getGold() {
         return gold;
     }
+
+    public void setGold(int newGold) {
+        gold = newGold;
+    }
     public int getHealth() {
         return health;
     }
@@ -42,18 +46,18 @@ public class Player {
     }
 
     public void attack(Dragon dragon) { // handle atk
-        int attack = sword.getAttackPower() * (int)(Math.random() * 10) + 1;
+        int attack = sword.getAttackPower() * ((int)(Math.random() * 5) + 1);
         dragon.setHealth(-attack);
         System.out.println("You attacked the dragon and dealt " + attack + " damage.");
-        if (health <= 0) {
-            System.out.println();
-        }
     }
 public void dragonDefeated(Dragon dragon) {
 
 }
     public void useHealthPot() {
         health += 50;
+        if (health > 100) {
+            health = 100;
+        }
         healthPotStatus = false;
     }
 

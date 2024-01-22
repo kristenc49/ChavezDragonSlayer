@@ -19,7 +19,15 @@ public class Dragon {
     }
     public void dragonAttack(Player player) {
         int attack = dragonLVL * (int)(Math.random() * 10) + 1;
-        player.setHealth(-attack);
+        int dodgeChance = (int)(Math.random() * 100) + 1;
+        if (dodgeChance <= player.getSword().getDodgeRating()) {
+            System.out.println("The dragon attacks and you dodge!");
+            System.out.println();
+        } else {
+            player.addHealth(-attack);
+            System.out.println("The dragon attacks you and you lose " + attack + " health");
+            System.out.println();
+        }
     }
 
     public void hit() {
@@ -41,6 +49,7 @@ public class Dragon {
         double healthFraction = (Math.random() * 0.5);
         int healthIncrease = (int)(100 * healthFraction);
         player.addHealth(healthIncrease);
+        System.out.println("Your health has increased by " + healthIncrease + " health.");
         if (player.getHealth() > 100) {
             player.setHealth(100);
         }
